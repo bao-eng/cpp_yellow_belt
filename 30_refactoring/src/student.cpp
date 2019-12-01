@@ -1,8 +1,6 @@
 #include "student.h"
 
-Student::Student(const string& name, const string& favouriteSong) : Human(name, "Student") {
-    FavouriteSong = favouriteSong;
-}
+Student::Student(const string& name, const string& favouriteSong) : Human(name, "Student"), FavouriteSong(favouriteSong) {}
 
 void Student::Learn() const {
     cout << Occupation <<  ": " << Name << " learns" << endl;
