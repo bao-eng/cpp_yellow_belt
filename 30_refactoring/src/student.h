@@ -7,7 +7,7 @@ public:
     Student(const string& name, const string& favouriteSong);
     void Learn() const;
     void SingSong() const;
-    void Walk(const string& destination) const;
+    void Walk(const string& destination) const override;
 
     const string FavouriteSong;
 };

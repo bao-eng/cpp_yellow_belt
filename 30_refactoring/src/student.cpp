@@ -10,7 +10,7 @@ void Student::SingSong() const {
     cout << Occupation <<  ": " << Name << " sings a song: " << FavouriteSong << endl;
 }
 
-void Student::Walk(const string& destination) const {
+void Student::Walk(const string& destination) const{
     cout << Occupation <<  ": " << Name << " walks to: " << destination << endl;
     this->SingSong();
 }
