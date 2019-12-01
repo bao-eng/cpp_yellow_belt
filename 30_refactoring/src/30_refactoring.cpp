@@ -38,8 +38,8 @@ public:
     }
 
     void Walk(const string& destination) const override{
-        cout << occupation_ <<  ": " << name_ << " walks to: " << destination << endl;
-    	this->SingSong();
+    	Human::Walk(destination);
+    	SingSong();
     }
 
 private:
@@ -85,6 +85,9 @@ int main() {
     VisitPlaces(t, places.begin(), places.end());
     p.Check(s);
     VisitPlaces(s, places.begin(), places.end());
+
+    t.Teach();
+    s.Learn();
 
     return 0;
 }
