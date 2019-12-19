@@ -1,7 +1,9 @@
 #include "condition_parser.h"
 #include "token.h"
+#include "node.h"
 
 #include <map>
+#include <memory>
 using namespace std;
 
 template <class It> shared_ptr<Node> ParseComparison(It& current, It end) {
@@ -105,6 +107,7 @@ shared_ptr<Node> ParseExpression(It& current, It end, unsigned precedence) {
 shared_ptr<Node> ParseCondition(istream& is) {
   auto tokens = Tokenize(is);
   auto current = tokens.begin();
+
   auto top_node = ParseExpression(current, tokens.end(), 0u);
 
   if (!top_node) {

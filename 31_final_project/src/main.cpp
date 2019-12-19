@@ -1,16 +1,18 @@
+#include <iostream>
+#include <stdexcept>
+
 #include "database.h"
 #include "date.h"
 #include "condition_parser.h"
 #include "node.h"
 #include "test_runner.h"
 
-#include <iostream>
-#include <stdexcept>
-
 using namespace std;
 
-string ParseEvent(istream& is) {
-  // Реализуйте эту функцию
+string ParseEvent(istream& is) { //return string for sure
+	string tmp;
+	getline(is, tmp);
+	return tmp.substr(tmp.find_first_not_of(" "),tmp.length());
 }
 
 void TestAll();
