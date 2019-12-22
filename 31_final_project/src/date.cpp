@@ -14,7 +14,7 @@ int Date::GetDay() const{
 	return day_;
 }
 
-Date ParseDate(istringstream& is){
+Date ParseDate(istream& is){
 	int year, month, day;
 	char tmp;
 	is >> year >> tmp >> month >> tmp >> day;

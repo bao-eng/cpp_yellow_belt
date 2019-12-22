@@ -22,17 +22,16 @@ enum class LogicalOperation{
 
 class Node{
 public:
-	virtual bool Evaluate(Date date, string str) const=0;
-
+	virtual bool Evaluate(const Date& date, const string& str) const=0;
 };
 class EmptyNode : public Node{
 public:
-	bool Evaluate(Date date, string str) const override;
+	bool Evaluate(const Date& date, const string& str) const override;
 };
 class DateComparisonNode : public Node{
 public:
-	DateComparisonNode(Comparison cmp, const Date& date);
-	bool Evaluate(Date date, string str) const override;
+	DateComparisonNode(const Comparison& cmp, const Date& date);
+	bool Evaluate(const Date& date, const string& str) const override;
 private:
 	Comparison cmp_;
 	Date date_;
@@ -40,16 +39,16 @@ private:
 
 class EventComparisonNode : public Node{
 public:
-	EventComparisonNode(Comparison cmp, string str);
-	bool Evaluate(Date date, string str) const override;
+	EventComparisonNode(const Comparison& cmp, string str);
+	bool Evaluate(const Date& date, const string& str) const override;
 private:
 	Comparison cmp_;
 	string str_;
 };
 class LogicalOperationNode : public Node{
 public:
-	LogicalOperationNode(LogicalOperation operation, shared_ptr<Node> left, shared_ptr<Node> right);
-	bool Evaluate(Date date, string str) const override;
+	LogicalOperationNode(const LogicalOperation& operation, shared_ptr<Node> left, shared_ptr<Node> right);
+	bool Evaluate(const Date& date, const string& str) const override;
 private:
 	LogicalOperation operation_;
 	shared_ptr<Node> left_;

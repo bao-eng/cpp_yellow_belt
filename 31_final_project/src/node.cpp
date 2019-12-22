@@ -1,18 +1,14 @@
 #include "node.h"
 
 
-bool EmptyNode::Evaluate(Date date, string str) const {
-	cout << "EmptyNode::Evaluate" << endl;
+bool EmptyNode::Evaluate(const Date& date, const string& str) const {;
 	return true;
 }
 
-DateComparisonNode::DateComparisonNode(Comparison cmp, const Date& date) : cmp_(cmp), date_(date){
-	//cout << "DateComparisonNode::DateComparisonNode" << endl;
+DateComparisonNode::DateComparisonNode(const Comparison& cmp, const Date& date) : cmp_(cmp), date_(date){
 }
 
-bool DateComparisonNode::Evaluate(Date date, string str) const {
-	//cout << date_ << endl;
-	//cout << "DateComparisonNode::Evaluate" << endl;
+bool DateComparisonNode::Evaluate(const Date& date, const string& str) const {
 	if(cmp_ == Comparison::Less){ return date < date_;}
 	if(cmp_ == Comparison::LessOrEqual){ return date <= date_;}
 	if(cmp_ == Comparison::Greater){ return date > date_;}
@@ -21,24 +17,23 @@ bool DateComparisonNode::Evaluate(Date date, string str) const {
 	if(cmp_ == Comparison::NotEqual){ return date != date_;}
 }
 
-EventComparisonNode::EventComparisonNode(Comparison cmp, string str) : cmp_(cmp), str_(str){
-	//cout << "EventComparisonNode::EventComparisonNode" << endl;
+EventComparisonNode::EventComparisonNode(const Comparison& cmp, string str) : cmp_(cmp), str_(str){
 }
 
-bool EventComparisonNode::Evaluate(Date date, string str) const {
-	//cout << "EventComparisonNode::Evaluate" << endl;
-
+bool EventComparisonNode::Evaluate(const Date& date, const string& str) const {
+	if(cmp_ == Comparison::Less){ return str < str_;}
+	if(cmp_ == Comparison::LessOrEqual){ return str <= str_;}
+	if(cmp_ == Comparison::Greater){ return str > str_;}
+	if(cmp_ == Comparison::GreaterOrEqual){ return str >= str_;}
 	if(cmp_ == Comparison::Equal){ return str==str_;}
 	if(cmp_ == Comparison::NotEqual){ return str!=str_;}
 }
 
-LogicalOperationNode::LogicalOperationNode(LogicalOperation operation, shared_ptr<Node> left, shared_ptr<Node> right)
+LogicalOperationNode::LogicalOperationNode(const LogicalOperation& operation, shared_ptr<Node> left, shared_ptr<Node> right)
 : operation_(operation), left_(left), right_(right){
-	//cout << "LogicalOperationNode::LogicalOperationNode" << endl;
 }
 
-bool LogicalOperationNode::Evaluate(Date date, string str) const {
-	//cout << "LogicalOperationNode::Evaluate" << endl;
+bool LogicalOperationNode::Evaluate(const Date& date, const string& str) const {
 	if(operation_ == LogicalOperation::And){
 		return left_->Evaluate(date, str) && right_->Evaluate(date, str);
 	}

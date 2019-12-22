@@ -18,9 +18,7 @@ private:
 	const int day_;
 };
 
-Date ParseDate(istringstream& is);
-
-//void operator<<(ostream& stream, const Date& date);
+Date ParseDate(istream& is);
 
 ostream& operator << (ostream& stream, const Date& date);
 
